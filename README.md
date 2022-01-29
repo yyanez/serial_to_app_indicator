@@ -5,8 +5,12 @@
 
 
 
+## Requisites
 
-
+The user must be in the dialout group
+```
+sudo usermod -a -G dialout $USER
+```
 
 ## References
 
