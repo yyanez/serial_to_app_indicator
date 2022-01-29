@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 import threading
@@ -53,8 +54,10 @@ def quit(_):
     
 def Main():
     ser = serial.Serial("/dev/ttyACM0", 9600)
-    
-    indicator = appindicator.Indicator.new("customtray", "semi-starred-symbolic", appindicator.IndicatorCategory.APPLICATION_STATUS)
+    currpath = os.path.dirname(os.path.realpath(__file__))
+    iconpath = currpath+"/image.png"
+    # indicator = appindicator.Indicator.new("customtray", "semi-starred-symbolic", appindicator.IndicatorCategory.APPLICATION_STATUS)
+    indicator = appindicator.Indicator.new("customtray", iconpath, appindicator.IndicatorCategory.APPLICATION_STATUS)
     indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
     indicator.set_label("Start", "hola")    
     indicator.set_menu(menu())
