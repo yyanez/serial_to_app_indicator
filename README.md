@@ -13,14 +13,16 @@ Install the following packages:
 ```
 sudo apt-get install gir1.2-appindicator3
 sudo apt-get install python3-pip
+pip install pyserial==3.3
 ```
+pyserial must be installed in the 3.3 version because it does not work in version 3.5.
 To start it:
 
 ```
 python3 serial_to_app_indicator.py
 ```
 
-To start it automatically use 
+To start it automatically use (If using the install script, the path is "/opt/serial_to_app_indicator"): 
 ```
 nohup python3 <path_to_the_app>/serial_to_app_indicator.py &
 ```
