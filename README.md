@@ -32,4 +32,3 @@ nohup python3 <path_to_the_app>/serial_to_app_indicator.py &
 * __TopIcons Plus extension:__ https://extensions.gnome.org/extension/1031/topicons/
 * __Tutorial on how to make a tray indicator app in Linux:__ https://fosspost.org/custom-system-tray-icon-indicator-linux/
 * __How to use threads in python:__ https://stackoverflow.com/questions/39127158/small-example-for-pyserial-using-threading
-"# serial_to_app_indicator" 
