@@ -11,8 +11,8 @@ sudo usermod -a -G dialout $USER
 
 Install the following packages:
 ```
-sudo apt-get install gir1.2-appindicator3
-sudo apt-get install python3-pip
+sudo apt-get install -y gir1.2-appindicator3
+sudo apt-get install -y python3-pip
 pip install pyserial==3.3
 ```
 pyserial must be installed in the 3.3 version because it does not work in version 3.5.
