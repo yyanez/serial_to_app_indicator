@@ -31,6 +31,7 @@ def Task1(ser, indicator):
 
         while thread_flag == 'go':
             data = ser.readline().decode('utf-8')
+            ser.reset_input_buffer()
             indicator.set_label(data, "hola")
             Report(data)
             time.sleep(1)
@@ -50,10 +51,12 @@ def menu():
     return menu
 
 def quit(_):
+	thread_flag = 'stop'
     gtk.main_quit()
     
 def Main():
     ser = serial.Serial("/dev/ttyACM0", 9600)
+    Report("Serial port opened")
     currpath = os.path.dirname(os.path.realpath(__file__))
     iconpath = currpath+"/image.png"
     # indicator = appindicator.Indicator.new("customtray", "semi-starred-symbolic", appindicator.IndicatorCategory.APPLICATION_STATUS)
