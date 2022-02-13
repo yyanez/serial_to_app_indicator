@@ -1,3 +1,5 @@
+# https://gjs-docs.gnome.org/appindicator301~0.1_api/
+
 import os
 import sys
 import time
@@ -23,7 +25,7 @@ def Task1(ser, indicator):
     Report("Inside Thread 1")
     global thread_flag
     thread_flag = 'go'
-
+    i = 0
     while True:
 
         Report("Thread 1 waiting for permission to read")
@@ -31,8 +33,10 @@ def Task1(ser, indicator):
 
         while thread_flag == 'go':
             data = ser.readline().decode('utf-8')
+            i = i + 1
             ser.reset_input_buffer()
-            indicator.set_label(data, "hola")
+            indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
+            indicator.set_label(str(i) + ': ' + data, "hola")
             Report(data)
             time.sleep(1)
 
@@ -43,7 +47,7 @@ def Task1(ser, indicator):
 
 def menu():
     menu = gtk.Menu()
-    exittray = gtk.MenuItem(label='Exit Tray')
+    exittray = gtk.MenuItem(label='Exit')
     exittray.connect('activate', quit)
     menu.append(exittray)
 
@@ -52,14 +56,13 @@ def menu():
 
 def quit(_):
 	thread_flag = 'stop'
-    gtk.main_quit()
-    
+	gtk.main_quit()
+        
 def Main():
     ser = serial.Serial("/dev/ttyACM0", 9600)
     Report("Serial port opened")
     currpath = os.path.dirname(os.path.realpath(__file__))
-    iconpath = currpath+"/image.png"
-    # indicator = appindicator.Indicator.new("customtray", "semi-starred-symbolic", appindicator.IndicatorCategory.APPLICATION_STATUS)
+    iconpath = currpath +"/image.png"
     indicator = appindicator.Indicator.new("customtray", iconpath, appindicator.IndicatorCategory.APPLICATION_STATUS)
     indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
     indicator.set_label("Start", "hola")    
